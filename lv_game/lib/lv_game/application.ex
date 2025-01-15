@@ -16,7 +16,8 @@ defmodule LvGame.Application do
       # Start a worker by calling: LvGame.Worker.start_link(arg)
       # {LvGame.Worker, arg},
       # Start to serve requests, typically the last entry
-      LvGameWeb.Endpoint
+      LvGameWeb.Endpoint,
+      LvGame.LobbyManager
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

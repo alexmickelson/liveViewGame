@@ -29,7 +29,7 @@ defmodule LvGameWeb.LightLive do
     """
   end
 
-  def handle_event("down", _, %{assigns: %{brightness: brightness}} = socket) do
+  def handle_event("down", _, socket) do
     {:noreply, update(socket, :brightness, fn b -> b - 10 end)}
   end
 
