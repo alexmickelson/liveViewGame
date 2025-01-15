@@ -1,5 +1,6 @@
 defmodule LvGameWeb.LightLive do
   use LvGameWeb, :live_view
+  # use Phoenix.LiveView # alternative, seems to not inherit layout from the LvGameWeb module
 
   # params is a map containing the current query params, as well as any router parameters
   # session is a map containing private session data

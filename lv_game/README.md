@@ -2,6 +2,7 @@
 
 following these tutorials
 - <https://pragmaticstudio.com/tutorials/getting-started-with-phoenix-liveview>
+- genserver docs <https://hexdocs.pm/elixir/1.12/GenServer.html>
 
 
 ## other stuff below
