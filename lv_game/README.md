@@ -1,5 +1,12 @@
 # LvGame
 
+following these tutorials
+- <https://pragmaticstudio.com/tutorials/getting-started-with-phoenix-liveview>
+
+
+## other stuff below
+
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
@@ -16,3 +23,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+
+
+

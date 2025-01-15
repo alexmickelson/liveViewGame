@@ -17,6 +17,7 @@ defmodule LvGameWeb.Router do
   scope "/", LvGameWeb do
     pipe_through :browser
 
+    live "/light", LightLive
     get "/", PageController, :home
   end
 
