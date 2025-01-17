@@ -19,6 +19,7 @@ defmodule LvGameWeb.Router do
 
     live "/light", LightLive
     live "/lobby", LiveLobby
+    live "/game", GameLive
     get "/", PageController, :home
   end
 
