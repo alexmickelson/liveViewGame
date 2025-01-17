@@ -3,6 +3,8 @@ defmodule LvGameWeb.GameLive do
 
   def mount(_params, _session, socket) do
     # initialization here
+    empty_set = MapSet.new()
+    socket = assign(socket, :keys, empty_set)
     {:ok, socket}
   end
 
@@ -10,6 +12,24 @@ defmodule LvGameWeb.GameLive do
   def render(assigns) do
     ~H"""
     <h1>Game</h1>
+    <div phx-window-keydown="keypress">
+      keys pressed:
+
+      <%= for key <- @keys do %>
+          <div>{key}</div>
+      <% end %>
+    </div>
     """
+  end
+
+  def handle_event("keypress", %{"key" => key}, socket) when key in ~w(w a s d) do
+    IO.puts("pressed #{key}")
+    # IO.puts(socket.assigns.keys)
+    new_socket = update(socket, :keys, &(MapSet.put(&1, key)))
+    {:noreply, new_socket}
+  end
+  def handle_event("keypress", _, socket) do
+    IO.puts("unknown key pressed")
+    {:noreply, socket}
   end
 end
