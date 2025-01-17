@@ -19,7 +19,7 @@ defmodule LvGameWeb.LiveLobby do
     <div>
       <form phx-submit="add_game">
         <label>
-          New Game <input type="text" name="gameName" placeholder="Game name" />
+          New Game <input type="text" name="name" placeholder="Game name" />
         </label>
         <button type="submit">Add</button>
       </form>
@@ -34,7 +34,7 @@ defmodule LvGameWeb.LiveLobby do
     """
   end
 
-  def handle_event("add_game", %{"gameName" => game_name}, socket) do
+  def handle_event("add_game", %{"name" => game_name}, socket) do
     IO.puts(game_name)
     LobbyManager.add_game(game_name)
 
