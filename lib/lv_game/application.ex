@@ -17,7 +17,8 @@ defmodule LvGame.Application do
       # {LvGame.Worker, arg},
       # Start to serve requests, typically the last entry
       LvGameWeb.Endpoint,
-      LvGame.LobbyManager
+      LvGame.LobbyManager,
+      LvGame.GameRunner
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
