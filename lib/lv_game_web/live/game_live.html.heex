@@ -1,0 +1,13 @@
+<div phx-window-keydown="keypress" phx-window-keyup="keyup" class="bg-stone-950">
+  {username}
+
+  keys pressed:
+  <%= for key <- @keys do %>
+    <div>{key}</div>
+  <% end %>
+  <div>
+    <%= for player <- @game.players do %>
+      <div>{player.name}</div>
+    <% end %>
+  </div>
+</div>

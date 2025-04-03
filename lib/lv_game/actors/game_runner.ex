@@ -15,6 +15,7 @@ defmodule LvGame.GameRunner do
      }}
   end
 
+  @spec start_link(any()) :: :ignore | {:error, any()} | {:ok, pid()}
   def start_link(args) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
   end
@@ -39,7 +40,7 @@ defmodule LvGame.GameRunner do
       new_state =
         state
         |> Map.update(:players, [new_player], &[new_player | &1])
-      IO.inspect(new_state)
+      # IO.inspect(new_state)
       {:noreply, new_state}
     end
   end

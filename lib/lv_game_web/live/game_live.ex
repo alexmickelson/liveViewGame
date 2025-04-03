@@ -4,7 +4,8 @@ defmodule LvGameWeb.GameLive do
   alias Phoenix.PubSub
   @pubsub_topic "game_updates"
 
-  def mount(_params, _session, socket) do
+  @impl true
+  def mount(_params, _session, socket = %{:username => username}) do
     if connected?(socket) do
       PubSub.subscribe(LvGame.PubSub, @pubsub_topic)
     end
@@ -13,27 +14,37 @@ defmodule LvGameWeb.GameLive do
 
     empty_set = MapSet.new()
     socket = assign(socket, :keys, empty_set)
+    socket = assign(socket, :username, username)
     {:ok, socket}
   end
 
-  def render(%{game: _} = assigns) do
-    IO.puts("render with game")
-    ~H"""
-    <h1>Game</h1>
-    <div phx-window-keydown="keypress" phx-window-keyup="keyup">
-      keys pressed:
-      <%= for key <- @keys do %>
-        <div>{key}</div>
-      <% end %>
-    </div>
+  @impl true
+  def mount(_params, _session, socket) do
+    IO.puts("got empty socket")
+    IO.inspect(socket.assigns)
+    get_in(socket.assigns, [:username]) || "Guest" |> IO.inspect()
+    Map.get(socket, :username) |> IO.inspect()
 
-    <div>
-      <%= for player <- @game.players do %>
-        <div>{player.name}</div>
-      <% end %>
-    </div>
-    """
+    {:ok, redirect(socket, to: "/login")}
   end
+
+  # def render(%{game: _} = assigns) do
+  #   IO.puts("render with game")
+
+  #   ~H"""
+  #   <div phx-window-keydown="keypress" phx-window-keyup="keyup" class="bg-stone-950">
+  #     keys pressed:
+  #     <%= for key <- @keys do %>
+  #       <div>{key}</div>
+  #     <% end %>
+  #     <div>
+  #       <%= for player <- @game.players do %>
+  #         <div>{player.name}</div>
+  #       <% end %>
+  #     </div>
+  #   </div>
+  #   """
+  # end
 
   def render(assigns) do
     ~H"""

@@ -20,12 +20,19 @@ defmodule LvGameWeb.Router do
     live "/light", LightLive
     live "/lobby", LiveLobby
     live "/game", GameLive
-    get "/", PageController, :home
+    live_session :default, on_mount: [LvGameWeb.SessionLoader] do
+      live "/login", SetUserLive
+      live "/", GameLive
+    end
+    # get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", LvGameWeb do
   #   pipe_through :api
+
+  #   # https://thepugautomatic.com/2020/05/persistent-session-data-in-phoenix-liveview/
+  #   post "/session", SessionController, :set
   # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
