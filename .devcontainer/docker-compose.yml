@@ -1,0 +1,28 @@
+services:
+  elixir:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - ~/.ssh:/home/developer/.ssh:ro
+    environment:
+      - DATABASE_URL=postgres://gameuser:postgresewvraer@db:5432/my_db
+    ports:
+      - "4000:4000"
+    # command: |
+    #   bash -c '
+    #     tail -f /dev/null
+    #   '
+
+  db:
+    image: postgres:17
+    environment:
+      - POSTGRES_USER=gameuser
+      - POSTGRES_PASSWORD=postgresewvraer
+      - POSTGRES_DB=my_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
